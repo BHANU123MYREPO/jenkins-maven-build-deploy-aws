@@ -1,5 +1,5 @@
 # Use an official Apache Tomcat image as a base
-FROM tomcat:8.5-jre17-alpine
+FROM tomcat:8.5-jre8-alpine
 
 WORKDIR /usr/local/tomcat/webapps
 
