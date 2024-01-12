@@ -5,7 +5,7 @@ module "ec2_instances" {
   source = "./modules/ec2-module"
 
   instance_count   = 3
-  instance_types    = ["t2.micro", "t2.micro", "t2.medium"]
+  instance_types    = ["t2.micro", "t2.medium", "t2.micro"]
   ami              = "ami-05c0f5389589545b7"  # Specify the desired AMI
   key_name         = "demo-key" # Specify your SSH key pair name
   subnet_id        = "subnet-0e41453c9b1028803"  # Specify the subnet ID where instances will be launched
