@@ -25,6 +25,7 @@ sudo visudo
 jenkins ALL=(ALL:ALL) NOPASSWD:ALL
 su jenkins
 sudo nano /etc/ssh/sshd_config
+PasswordAuthentication yes
 sudo service sshd restart
 sudo apt update
 sudo apt install openjdk-17-jre -y
@@ -32,6 +33,7 @@ mkdir /home/jenkins/jenkins-agent
 
 Jenkins Master
 ---------------
+su - jenkins
 ssh-copy-id jenkins@<slave-private-ip>
 ssh jenkins@<jenkins-slave-private-ip>
 exit
@@ -50,3 +52,26 @@ Host Key Verification Strategy=Non verifying Verification Strategy
 Availability=Keep this agent online as much as possible
 Click save
 
+Now go and launch the agent.
+
+Jenkins Slave
+--------------
+su jenkins
+ssh-keygen -t rsa -b 4096 -m PEM
+
+Deployer
+--------
+sudo adduser jenkins --gecos ""
+sudo visudo
+jenkins ALL=(ALL:ALL) NOPASSWD:ALL
+su jenkins
+sudo nano /etc/ssh/sshd_config
+PasswordAuthentication yes
+sudo service sshd restart
+
+Jenkins Slave
+-------------
+su jenkins
+ssh-copy-id jenkins@<slave-private-ip>
+ssh jenkins@<jenkins-slave-private-ip>
+exit
