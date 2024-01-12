@@ -57,7 +57,7 @@ pipeline {
                 script {
                     // SSH into the EC2 instance and deploy the Docker container
                     sh "ssh -i ${PRIVATE_KEY_PATH} jenkins@${EC2_INSTANCE_IP} 'docker pull ${DOCKER_HUB_REPO}:latest'"
-                    sh "ssh -i ${PRIVATE_KEY_PATH} jenkins@${EC2_INSTANCE_IP} 'docker run -d -p 8888:8080 ${DOCKER_HUB_REPO}:latest'"
+                    sh "ssh -i ${PRIVATE_KEY_PATH} jenkins@${EC2_INSTANCE_IP} 'docker run -d -p 8888:8080 --name petclinic-container ${DOCKER_HUB_REPO}:latest'"
                 }
             }
         }
